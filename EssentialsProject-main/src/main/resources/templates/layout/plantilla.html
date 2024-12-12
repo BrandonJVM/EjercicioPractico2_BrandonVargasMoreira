@@ -2,58 +2,140 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>EjercicioPractico2_BrandonVargasMorera</title>
+    <title>Ejercicio Practico - Estilizado</title>
     <meta charset="UTF-8" />
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
-    <script th:src="@{/js/rutinas.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <style>
+        body {
+            background: linear-gradient(120deg, #e3f2fd, #bbdefb);
+            font-family: 'Arial', sans-serif;
+            color: #212529;
+        }
+
+        header {
+            background: #0061f2;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header a {
+            color: #ffffff;
+        }
+
+        header a:hover {
+            color: #bbdefb;
+        }
+
+        .btn-outline-light {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-outline-light:hover {
+            background: #ffffff;
+            color: #0061f2;
+        }
+
+        .btn-primary,
+        .btn-info {
+            border-radius: 20px;
+        }
+
+        .modal-header {
+            background: #0061f2;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-header.bg-info {
+            background: #17a2b8;
+            color: #ffffff;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-body {
+            background: #f7f9fc;
+            padding: 30px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: #0061f2;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        footer a:hover {
+            color: #bbdefb;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-primary text-white"> <a <a
-            th:href="@{/}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <use xlink:href="#bootstrap" />
-            </svg>
-            <span class="fs-4">EjercicioPractico2_BrandonVargasMorera</span>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a th:href="@{/}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+            <span class="fs-4">Ejercicio Practico - Estilizado</span>
         </a>
         <ul class="nav nav-pills">
-            <li class="nav-item"><a th:href="@{/product/listado}" class="nav-link text-light">Inicio de sesion</a></li>
-            <li class="nav-item"><a th:href="@{/Carrito/listado}" class="nav-link text-light">Carrito de compras</a></li>
+            <li class="nav-item"><a th:href="@{/product/listado}" class="nav-link">Inicio de sesión</a></li>
+            <li class="nav-item"><a th:href="@{/carrito/listado}" class="nav-link">Carrito de compras</a></li>
         </ul>
     </header>
 
     <!-- Modales -->
     <div th:fragment="modales">
-        <!-- Modal Trigger Button -->
+        <!-- Botón para el modal de inicio de sesión -->
         <div class="d-flex justify-content-center my-3">
-            <button type="button" class="btn btn-outline-light btn-lg bg-primary text-white" data-bs-toggle="modal"
-                data-bs-target="#loginModal"> Iniciar Sesión
+            <button type="button" class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Iniciar Sesión
             </button>
         </div>
 
-        <!-- Modal Structure (Login Modal) -->
+        <!-- Modal de Inicio de Sesion -->
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="loginModalLabel">Login</h5> <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form onsubmit="event.preventDefault()">
-                            <p class="text-muted text-center">Please enter your login and password!</p>
-                            <div class="mb-3"> <input type="text" class="form-control" placeholder="email" required>
+                            <p class="text-muted text-center">Ingrese su correo y contraseña:</p>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Correo Electrónico" required />
                             </div>
-                            <div class="mb-3"> <input type="password" class="form-control" placeholder="Password"
-                                    required> </div>
-                            <div class="text-center mb-3"> <a class="forgot text-muted" href="#">Forgot password?</a>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Contraseña" required />
                             </div>
-                            <div class="d-grid mb-3"> <button type="submit" class="btn btn-primary">Login</button>
+                            <div class="text-center mb-3">
+                                <a class="forgot text-muted" href="#">¿Olvidó su contraseña?</a>
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-primary">Ingresar</button>
                             </div>
                         </form>
                     </div>
@@ -61,36 +143,41 @@
             </div>
         </div>
 
-        <!-- Crear Usuario -->
-
+        <!-- Botón para el modal de crear usuario -->
         <div class="d-flex justify-content-center my-3">
-            <button type="button" class="btn btn-outline-light btn-lg bg-info text-dark" data-bs-toggle="modal"
-                data-bs-target="#singUpModal"> Crear usuario
+            <button type="button" class="btn btn-info btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#singUpModal">
+                Crear Usuario
             </button>
         </div>
 
-        <!-- Modal Structure (Sign Up Modal) -->
+        <!-- Modal de Crear Usuario -->
         <div class="modal fade" id="singUpModal" tabindex="-1" aria-labelledby="singUpModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header bg-info text-dark">
-                        <h5 class="modal-title" id="singUpModalLabel">Crear Usuario</h5> <button type="button"
-                            class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-info">
+                        <h5 class="modal-title" id="singUpModalLabel">Crear Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form onsubmit="event.preventDefault()">
-                            <p class="text-muted text-center">Please fulfill the empty spaces to create your user!</p>
-                            <div class="mb-3"> <input type="text" class="form-control" placeholder="Email" required>
+                            <p class="text-muted text-center">Complete los campos para crear su usuario:</p>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Correo Electrónico" required />
                             </div>
-                            <div class="mb-3"> <input type="text" class="form-control" placeholder="email" required>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Nombre de Usuario" required />
                             </div>
-                            <div class="mb-3"> <input type="password" class="form-control" placeholder="Password"
-                                    required> </div>
-                            <div class="mb-3"> <input type="password" class="form-control"
-                                    placeholder="Password confirmation" required> </div>
-                            <div class="text-center mb-3"> <a class="forgot text-muted" href="#">Why be part of us?</a>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Contraseña" required />
                             </div>
-                            <div class="d-grid mb-3"> <button type="submit" class="btn btn-info">Create user</button>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Confirmar Contraseña" required />
+                            </div>
+                            <div class="text-center mb-3">
+                                <a class="forgot text-muted" href="#">¿Por qué unirse a nosotros?</a>
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-info">Crear Usuario</button>
                             </div>
                         </form>
                     </div>
@@ -100,15 +187,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-        </ul>
-        <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
+    <footer class="text-center">
+        <p class="mb-0">&copy; 2024 Ejercicio Practico - Diseñado con <i class="fas fa-heart text-danger"></i></p>
     </footer>
 
 </body>

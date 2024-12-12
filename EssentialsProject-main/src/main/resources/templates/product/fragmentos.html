@@ -4,23 +4,87 @@
 
 <head th:replace="~{layout/plantilla :: head}">
     <title>EjercicioPractico2_BrandonVargasMorera</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Celeste claro */
+        }
+
+        .bg-primary {
+            background-color: #0061f2 !important; /* Azul Spring Boot */
+        }
+
+        .text-white {
+            color: #ffffff !important;
+        }
+
+        .bg-info {
+            background-color: #17a2b8 !important; /* Azul más suave */
+        }
+
+        .text-dark {
+            color: #212529 !important;
+        }
+
+        .btn-outline-light {
+            border-color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: #0061f2 !important;
+            border-color: #0061f2 !important;
+        }
+
+        .btn-info {
+            background-color: #17a2b8 !important;
+            border-color: #17a2b8 !important;
+        }
+
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .card-header {
+            background-color: #0061f2;
+            color: #fff;
+            text-align: center;
+        }
+
+        .btn-light, .btn-dark {
+            background-color: #ffffff !important;
+            color: #212529 !important;
+        }
+
+        footer {
+            background-color: #0061f2;
+            color: #ffffff;
+        }
+
+        footer .nav-link {
+            color: #ffffff;
+        }
+
+        footer .nav-link:hover {
+            color: #e3f2fd;
+        }
+    </style>
 </head>
 
 <body>
     <section th:fragment="listadoProductos" id="products">
         <div class="container">
             <div class="row row-cols-2">
-                <h2 class="inline">[[#{index.nuestrosProductos}]]</h2>
+                <h2 class="inline text-primary">[[#{index.nuestrosProductos}]]</h2>
                 <div id="resultsBlock"></div>
             </div>
             <div class="row row-cols-3" th:if="${products != null and !products.empty}">
-                <div class="card" th:each="product : ${products}">
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">[[${product.nombre}]]</h5>
+                        <h5 class="card-title text-primary">[[${product.nombre}]]</h5>
                         <form>
                             <input type="hidden" name="texto" th:value="${product.id}" />
                             <input type="hidden" name="texto" th:value="${product.capacidad}" />
-                            <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)"
+                            <button class="btn btn-outline-light" id="addCar" name="addCar" onclick="addCard(this.form)"
                                 type="button"><i class="fas fa-cart-plus"></i></button>
                         </form>
                         <p class="card-text">[[${product.descripcion}]]</p>
@@ -28,7 +92,8 @@
                 </div>
             </div>
             <div th:if="${products == null or products.empty}">
-                [[#{carrito.no_mostrar}]]</div>
+                [[#{carrito.no_mostrar}]]
+            </div>
         </div>
     </section>
 
@@ -46,11 +111,11 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-primary text-white">
                             <h4>[[#{carrito.titulo}]]</h4>
                         </div>
                         <div th:if="${items != null and !items.empty}">
-                            <table class="table table-stryped">
+                            <table class="table table-striped">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>#</th>
@@ -107,7 +172,7 @@
                     <div class="card text-center bg-light text-dark mb-3">
                         <div class="card-body">
                             <a th:href="@{/facturar/carrito}" class="btn btn-dark">
-                                <i class='fas fa-fordward'></i> [[#{carrito.facturar}]]
+                                <i class='fas fa-forward'></i> [[#{carrito.facturar}]]
                             </a>
                         </div>
                     </div>
