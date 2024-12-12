@@ -6,38 +6,39 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Product")
+@Table(name = "Product")
 public class Product implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name = "Id")
     private Long id;
-    private String name;
+    private String nombre /* name */;
     private String description;
-    private double price;
-    private int quantity;
-    private boolean active;
-    @Column(name="image")   
-    private String image;
-    
+    private String tipo;
+    /*
+     * private int quantity;
+     * private boolean active;
+     * 
+     * @Column(name = "image")
+     * private String image;
+     */
+
     @ManyToOne
-    @JoinColumn(name="CategoryId")
+    @JoinColumn(name = "CategoryId")
     Categoria category;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, double price, int quantity, boolean active) {
+    public Product(Long id, String name, String description, String tipo) {
         this.id = id;
-        this.name = name;
+        this.nombre = name;
         this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-        this.active = active;
+        this.tipo = tipo;
+
     }
 
-    
 }

@@ -32,7 +32,7 @@ public class CarritoController {
         model.addAttribute("items", items);
         var carritoTotalVenta = 0;
         for (Item i : items) {
-            carritoTotalVenta += (i.getCantidad() * i.getPrice());
+            carritoTotalVenta += (i.getCantidad());
         }
         model.addAttribute("carritoTotal",
                 carritoTotalVenta);
@@ -53,7 +53,7 @@ public class CarritoController {
         var carritoTotalVenta = 0;
         for (Item i : lista) {
             totalCarritos += i.getCantidad();
-            carritoTotalVenta += (i.getCantidad() * i.getPrice());
+            carritoTotalVenta += (i.getCantidad());
         }
         model.addAttribute("listaItems", lista);
         model.addAttribute("listaTotal", totalCarritos);

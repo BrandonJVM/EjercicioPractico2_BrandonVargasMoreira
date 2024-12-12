@@ -123,18 +123,21 @@ public class ItemServiceImpl implements ItemService {
         factura = facturaDao.save(factura);
 
         double total = 0;
-        for (Item i : listaItems) {
-            System.out.println("Producto: " + i.getDescription()
-                    + " Cantidad: " + i.getCantidad()
-                    + " Total: " + i.getPrice() * i.getCantidad());
-            Venta venta = new Venta(factura.getId(), i.getId(), i.getPrice(), i.getCantidad());
-            ventaDao.save(venta);
-            Product producto = productoDao.getReferenceById(i.getId());
-            producto.setQuantity(producto.getQuantity() - i.getCantidad());
-            productoDao.save(producto);
-            total += i.getPrice() * i.getCantidad();
-        }
-        factura.setTotal(total);
+        /*
+         * for (Item i : listaItems) {
+         * System.out.println("Producto: " + i.getDescription()
+         * + " Cantidad: " + i.getCantidad()
+         * + " Total: " + i.getPrice() * i.getCantidad());
+         * Venta venta = new Venta(factura.getId(), i.getId(), i.getPrice(),
+         * i.getCantidad());
+         * ventaDao.save(venta);
+         * Product producto = productoDao.getReferenceById(i.getId());
+         * producto.setQuantity(producto.getQuantity() - i.getCantidad());
+         * productoDao.save(producto);
+         * total += i.getPrice() * i.getCantidad();
+         * }
+         */
+        factura.setTotal(1);
         facturaDao.save(factura);
         listaItems.clear();
     }

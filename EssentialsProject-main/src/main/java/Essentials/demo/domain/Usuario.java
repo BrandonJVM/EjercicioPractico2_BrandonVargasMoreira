@@ -26,14 +26,9 @@ public class Usuario implements Serializable {
     private Long idUsuario;
     @NotEmpty
     private String email;
-    @NotEmpty
+    private String nombre_completo;
     private String password;
-    private String name;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private String image;
-    private boolean active;
+    private String rol_id;
 
     @OneToMany
     @JoinColumn(name = "userId")

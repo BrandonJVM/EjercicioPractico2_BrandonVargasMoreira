@@ -25,7 +25,7 @@ public class ProductController {
         var products = productService.getProducts(false);
         for (Product prod : products) {
             System.out.println("ID: " + prod.getId()
-                    + ", Name: " + prod.getName());
+                    + ", Name: " + prod.getNombre());
         }
         model.addAttribute("products", products);
         model.addAttribute("totalProducts", products.size());

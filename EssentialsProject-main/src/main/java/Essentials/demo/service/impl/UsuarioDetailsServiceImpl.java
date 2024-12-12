@@ -30,13 +30,13 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
             throw new UsernameNotFoundException(username);
         }
         session.removeAttribute("usuarioImagen");
-        session.setAttribute("usuarioImagen", usuario.getImage());
+        session.setAttribute("usuarioImagen", usuario.getIdUsuario());
         // Si está acá es porque existe el usuario... sacamos los roles que tiene
         var roles = new ArrayList<GrantedAuthority>();
         for (Rol rol : usuario.getRoles()) { // Se sacan los roles
             roles.add(new SimpleGrantedAuthority(rol.getName()));
         }
         // Se devuelve User (clase de userDetails)
-        return new User(usuario.getUsername(), usuario.getPassword(), roles);
+        return new User(usuario.getNombre_completo(), usuario.getPassword(), roles);
     }
 }

@@ -5,21 +5,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class Item extends Product {
-    private int cantidad; //Almacenar la cantidad de items de un producto
+    private int cantidad; // Almacenar la cantidad de items de un producto
 
     public Item() {
     }
 
     public Item(Product producto) {
         super.setId(producto.getId());
-        super.setCategory(producto.getCategory());
-        super.setName(producto.getName());
+        super.setNombre(producto.getNombre());
         super.setDescription(producto.getDescription());
-        super.setPrice(producto.getPrice());
-        super.setQuantity(producto.getQuantity());
-        super.setActive(producto.isActive());
+        super.setTipo(producto.getTipo());
         this.cantidad = 0;
     }
 }
