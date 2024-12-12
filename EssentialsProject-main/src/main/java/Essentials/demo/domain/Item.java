@@ -15,8 +15,10 @@ public class Item extends Product {
     public Item(Product producto) {
         super.setId(producto.getId());
         super.setNombre(producto.getNombre());
-        super.setDescription(producto.getDescription());
+        super.setDescripcion(producto.getDescripcion());
         super.setTipo(producto.getTipo());
-        this.cantidad = 0;
+        super.setFecha_inicio(producto.getFecha_inicio());
+        super.setFecha_fin(producto.getFecha_fin());
+        super.setCapacidad(producto.getCapacidad());
     }
 }

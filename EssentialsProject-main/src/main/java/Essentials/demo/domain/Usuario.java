@@ -25,10 +25,15 @@ public class Usuario implements Serializable {
     @Column(name = "userId")
     private Long idUsuario;
     @NotEmpty
-    private String email;
-    private String nombre_completo;
+    private String username;
+    @NotEmpty
     private String password;
-    private String rol_id;
+    private String name;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
+    private String image;
+    private boolean active;
 
     @OneToMany
     @JoinColumn(name = "userId")

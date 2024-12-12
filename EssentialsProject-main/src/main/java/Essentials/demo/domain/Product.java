@@ -3,6 +3,7 @@ package Essentials.demo.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
+import java.util.Date;
 
 @Data
 @Entity
@@ -15,16 +16,12 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Long id;
-    private String nombre /* name */;
-    private String description;
+    private String nombre;
+    private String descripcion;
     private String tipo;
-    /*
-     * private int quantity;
-     * private boolean active;
-     * 
-     * @Column(name = "image")
-     * private String image;
-     */
+    private Date fecha_inicio;
+    private Date fecha_fin;
+    private int capacidad;
 
     @ManyToOne
     @JoinColumn(name = "CategoryId")
@@ -33,12 +30,15 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Long id, String name, String description, String tipo) {
+    public Product(Long id, String nombre, String descripcion, String tipo, Date fecha_inicio, Date fecha_fin,
+            int capacidad) {
         this.id = id;
-        this.nombre = name;
-        this.description = description;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.tipo = tipo;
-
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.capacidad = capacidad;
     }
 
 }

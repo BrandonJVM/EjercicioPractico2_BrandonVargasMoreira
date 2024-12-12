@@ -46,16 +46,21 @@ public class RegistroServiceImpl implements RegistroService {
                 var codigo = new BCryptPasswordEncoder();
                 usuario.setPassword(codigo.encode(usuario.getPassword()));
 
+                if (!imagenFile.isEmpty()) {
+                        usuario.setActive(true);
+                }
+                usuarioService.save(usuario, true);
         }
 
         @Override
         public Model crearUsuario(Model model, Usuario usuario) {
                 String mensaje;
                 if (!usuarioService.existeUsuarioPorUsernameOEmail(
-                                usuario.getNombre_completo(),
+                                usuario.getUsername(),
                                 usuario.getEmail())) {
                         String clave = demeClave();
                         usuario.setPassword(clave);
+                        usuario.setActive(false);
                         usuarioService.save(usuario, true);
                         mensaje = String.format(
                                         messageSource.getMessage(
@@ -69,7 +74,7 @@ public class RegistroServiceImpl implements RegistroService {
                                                         "registro.mensaje.usuario.o.email",
                                                         null,
                                                         Locale.getDefault()),
-                                        usuario.getNombre_completo(), usuario.getEmail());
+                                        usuario.getUsername(), usuario.getEmail());
                 }
                 model.addAttribute(
                                 "titulo",
@@ -87,11 +92,12 @@ public class RegistroServiceImpl implements RegistroService {
         public Model recordarUsuario(Model model, Usuario usuario) {
                 String mensaje;
                 Usuario usuario2 = usuarioService.getUsuarioPorUsernameOEmail(
-                                usuario.getNombre_completo(),
+                                usuario.getUsername(),
                                 usuario.getEmail());
                 if (usuario2 != null) {
                         String clave = demeClave();
                         usuario2.setPassword(clave);
+                        usuario2.setActive(false);
                         usuarioService.save(usuario2, false);
                         mensaje = String.format(
                                         messageSource.getMessage(
@@ -105,7 +111,7 @@ public class RegistroServiceImpl implements RegistroService {
                                                         "registro.mensaje.usuario.o.correo",
                                                         null,
                                                         Locale.getDefault()),
-                                        usuario.getNombre_completo(), usuario.getEmail());
+                                        usuario.getUsername(), usuario.getEmail());
                 }
                 model.addAttribute(
                                 "titulo",
@@ -136,16 +142,27 @@ public class RegistroServiceImpl implements RegistroService {
                 String mensaje = messageSource.getMessage(
                                 "registro.correo.activar",
                                 null, Locale.getDefault());
+
                 mensaje = String.format(
-                                mensaje, usuario.getNombre_completo(),
-                                usuario.getNombre_completo(), servidor,
-                                usuario.getNombre_completo(), clave);
+                                mensaje, usuario.getName(),
+                                usuario.getLastName(), servidor,
+                                usuario.getUsername(), clave);
                 String asunto = messageSource.getMessage(
                                 "registro.mensaje.activacion",
                                 null, Locale.getDefault());
         }
 
         private void enviaCorreoRecordar(Usuario usuario, String clave) {
-
+                String mensaje = messageSource.getMessage(""
+                                + "registro.correo.recordar",
+                                null,
+                                Locale.getDefault());
+                mensaje = String.format(
+                                mensaje, usuario.getName(),
+                                usuario.getLastName(), servidor,
+                                usuario.getUsername(), clave);
+                String asunto = messageSource.getMessage(
+                                "registro.mensaje.recordar",
+                                null, Locale.getDefault());
         }
 }
