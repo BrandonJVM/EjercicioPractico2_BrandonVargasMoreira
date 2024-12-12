@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Product")
+@Table(name = "eventos")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,10 +22,6 @@ public class Product implements Serializable {
     private Date fecha_inicio;
     private Date fecha_fin;
     private int capacidad;
-
-    @ManyToOne
-    @JoinColumn(name = "CategoryId")
-    Categoria category;
 
     public Product() {
     }
