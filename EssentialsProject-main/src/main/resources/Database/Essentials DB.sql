@@ -27,7 +27,7 @@ CREATE TABLE Categories (
  /*Se crea la tabla de clientes llamada cliente... igual que la clase Cliente */
 CREATE TABLE User (
   userId INT NOT NULL AUTO_INCREMENT,
-  username varchar(20) NOT NULL,
+  email varchar(20) NOT NULL,
   password varchar(512) NOT NULL,
   name VARCHAR(20) NOT NULL,
   lastName VARCHAR(30) NOT NULL,
@@ -113,7 +113,7 @@ VALUES
 (1, 'Sudadera Essentials Azul', 'Sudadera unisex Essentials color azul con capucha ajustable.', 79.99, 35, 'https://example.com/images/sudadera_essentials_azul.jpg', TRUE, 0),
 (2, 'Joggers Essentials Grises', 'Joggers Essentials para entrenamiento o uso casual.', 59.99, 45, 'https://example.com/images/joggers_essentials_grises.jpg', TRUE, 1);
 
-INSERT INTO User (username, password, name, lastName, email, phoneNumber, image, active)
+INSERT INTO User (email, password, name, lastName, email, phoneNumber, image, active)
 VALUES
 ('Pedro', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 'John', 'Doe', 'jdoe@example.com', '1234567890', 'https://example.com/images/jdoe.jpg', TRUE),
 ('Juan', '$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi', 'Juan', 'Smith', 'asmith@example.com', '9876543210', 'https://example.com/images/asmith.jpg', TRUE),

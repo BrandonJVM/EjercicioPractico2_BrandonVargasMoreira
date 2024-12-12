@@ -25,29 +25,29 @@ public class ItemServiceImpl implements ItemService {
         return listaItems;
     }
 
-    //Se usa en el addCarrito... agrega un elemento
+    // Se usa en el addCarrito... agrega un elemento
     @Override
     public void save(Item item) {
         boolean existe = false;
         for (Item i : listaItems) {
-            //Busca si ya existe el producto en el carrito
+            // Busca si ya existe el producto en el carrito
             if (Objects.equals(i.getId(), item.getId())) {
-                //Valida si aún puede colocar un item adicional -segun existencias-
+                // Valida si aún puede colocar un item adicional -segun existencias-
                 if (i.getCantidad() < item.getCantidad()) {
-                    //Incrementa en 1 la cantidad de elementos
+                    // Incrementa en 1 la cantidad de elementos
                     i.setCantidad(i.getCantidad() + 1);
                 }
                 existe = true;
                 break;
             }
         }
-        if (!existe) {//Si no está el producto en el carrito se agrega cantidad =1.            
+        if (!existe) {// Si no está el producto en el carrito se agrega cantidad =1.
             item.setCantidad(1);
             listaItems.add(item);
         }
     }
 
-    //Se usa para eliminar un producto del carrito
+    // Se usa para eliminar un producto del carrito
     @Override
     public void delete(Item item) {
         var posicion = -1;
@@ -64,7 +64,7 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
-    //Se obtiene la información de un producto del carrito... para modificarlo
+    // Se obtiene la información de un producto del carrito... para modificarlo
     @Override
     public Item get(Item item) {
         for (Item i : listaItems) {
@@ -75,7 +75,7 @@ public class ItemServiceImpl implements ItemService {
         return null;
     }
 
-    //Se usa en la página para actualizar la cantidad de productos
+    // Se usa en la página para actualizar la cantidad de productos
     @Override
     public void actualiza(Item item) {
         for (Item i : listaItems) {
@@ -100,7 +100,7 @@ public class ItemServiceImpl implements ItemService {
     public void facturar() {
         System.out.println("Facturando");
 
-        //Se obtiene el usuario autenticado
+        // Se obtiene el usuario autenticado
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails userDetails) {
@@ -130,7 +130,7 @@ public class ItemServiceImpl implements ItemService {
             Venta venta = new Venta(factura.getId(), i.getId(), i.getPrice(), i.getCantidad());
             ventaDao.save(venta);
             Product producto = productoDao.getReferenceById(i.getId());
-            producto.setQuantity(producto.getQuantity()-i.getCantidad());
+            producto.setQuantity(producto.getQuantity() - i.getCantidad());
             productoDao.save(producto);
             total += i.getPrice() * i.getCantidad();
         }
